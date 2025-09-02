@@ -1,20 +1,22 @@
-<h1>QR Code Generator</h1>
+<h1>GUID Generator (from NestJS)</h1>
 
-<!-- Input for QR data -->
-<input
-type="text"
-[(ngModel)]="qrData"
-placeholder="Enter text or URL"
-style="padding: 10px; border-radius: 6px; width: 300px;"
-/>
+<button (click)="getGuidFromBackend()" style="padding: 10px; margin-top: 10px;">
+  Get GUID QR
+</button>
 
-<div style="margin-top: 20px;">
-<!-- QR Code -->
-<qrcode
-  [qrdata]="qrData"
-  [width]="256"
-  [errorCorrectionLevel]="'M'"
-  [elementType]="'canvas'">
-</qrcode>
+<div *ngIf="guid" style="margin-top: 20px;">
+  <p><b>GUID:</b> {{ guid }}</p>
+  <p><b>Issued At:</b> {{ issuedAt }}</p>
+
+  <!-- Generate QR in frontend -->
+  <qrcode
+    [qrdata]="guid"
+    [width]="256"
+    [errorCorrectionLevel]="'M'"
+    [elementType]="'canvas'">
+  </qrcode>
+</div>
+
+
 
 <router-outlet />
